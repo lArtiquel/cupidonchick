@@ -19,6 +19,74 @@ interface UserProfile {
   // Add other fields as necessary
 }
 
+/**
+ * @swagger
+ * /saveProfile:
+ *   post:
+ *     summary: Save a user profile
+ *     description: Saves or updates a user profile in the database.
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             $ref: '#/components/schemas/UserProfile'
+ *     responses:
+ *       200:
+ *         description: Profile saved successfully
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 message:
+ *                   type: string
+ *                   example: Profile saved
+ *                 profile:
+ *                   $ref: '#/components/schemas/UserProfile'
+ *       400:
+ *         description: Bad Request
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/ErrorResponse'
+ *       500:
+ *         description: Internal Server Error
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/ErrorResponse'
+ */
+
+/**
+ * @swagger
+ * components:
+ *   schemas:
+ *     UserProfile:
+ *       type: object
+ *       required:
+ *         - telegramUserId
+ *         - first_name
+ *       properties:
+ *         telegramUserId:
+ *           type: integer
+ *         first_name:
+ *           type: string
+ *         last_name:
+ *           type: string
+ *         username:
+ *           type: string
+ *         photo_url:
+ *           type: string
+ *         bio:
+ *           type: string
+ *     ErrorResponse:
+ *       type: object
+ *       properties:
+ *         message:
+ *           type: string
+ */
+
 const handler: Handler = async (event) => {
   try {
     const profile: UserProfile = JSON.parse(event.body || "{}");

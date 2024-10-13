@@ -18,6 +18,69 @@ interface User {
   // Add other fields as necessary
 }
 
+/**
+ * @swagger
+ * /checkUser:
+ *   get:
+ *     summary: Check if a user exists
+ *     description: Checks MongoDB to see if a user with the given Telegram User ID exists.
+ *     parameters:
+ *       - in: query
+ *         name: telegramUserId
+ *         schema:
+ *           type: integer
+ *         required: true
+ *         description: Telegram User ID
+ *     responses:
+ *       200:
+ *         description: User existence status
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 exists:
+ *                   type: boolean
+ *                 user:
+ *                   $ref: '#/components/schemas/User'
+ *       400:
+ *         description: Missing or invalid parameters
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/ErrorResponse'
+ *       500:
+ *         description: Internal server error
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/ErrorResponse'
+ */
+
+/**
+ * @swagger
+ * components:
+ *   schemas:
+ *     User:
+ *       type: object
+ *       properties:
+ *         telegramUserId:
+ *           type: integer
+ *         first_name:
+ *           type: string
+ *         last_name:
+ *           type: string
+ *         username:
+ *           type: string
+ *         photo_url:
+ *           type: string
+ *     ErrorResponse:
+ *       type: object
+ *       properties:
+ *         message:
+ *           type: string
+ */
+
 const handler: Handler = async (event) => {
   try {
     const telegramUserId = event.queryStringParameters?.telegramUserId;
