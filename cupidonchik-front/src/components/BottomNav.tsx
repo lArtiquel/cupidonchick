@@ -5,6 +5,7 @@ import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import SettingsIcon from "@mui/icons-material/Settings";
 import { useNavigate } from "react-router-dom";
+import { styled } from "@mui/material";
 
 const BottomNav: React.FC = () => {
   const [value, setValue] = React.useState(window.location.pathname);
@@ -41,4 +42,8 @@ const BottomNav: React.FC = () => {
   );
 };
 
-export default BottomNav;
+const StyledBottomNav = styled(BottomNav)(({ theme }) => ({
+  background: "linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)",
+}));
+
+export default StyledBottomNav;

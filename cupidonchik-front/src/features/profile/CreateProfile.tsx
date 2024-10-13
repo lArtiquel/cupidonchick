@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import { useAppSelector, useAppDispatch } from "../../store";
 import { useNavigate } from "react-router-dom";
-import { setUserProfile } from "../user/userSlice";
-import { TextField, Button, Container, Typography, Box } from "@mui/material";
+import { setUserExists, setUserProfile } from "../user/userSlice";
+import { TextField, Container, Typography, Box } from "@mui/material";
+import GradientButton from "../../components/GradientButton";
 
 const CreateProfile: React.FC = () => {
   const userInfo = useAppSelector((state) => state.user.userInfo);
@@ -33,6 +34,7 @@ const CreateProfile: React.FC = () => {
       .then((response) => response.json())
       .then((data) => {
         dispatch(setUserProfile(data.profile));
+        dispatch(setUserExists(true)); // Add this line
         navigate("/");
       })
       .catch((error) => {
@@ -57,9 +59,9 @@ const CreateProfile: React.FC = () => {
             onChange={(e) => setBio(e.target.value)}
           />
           {/* Add other fields as necessary */}
-          <Button variant="contained" color="primary" fullWidth type="submit">
+          <GradientButton variant="contained" fullWidth type="submit">
             Save Profile
-          </Button>
+          </GradientButton>
         </form>
       </Box>
     </Container>

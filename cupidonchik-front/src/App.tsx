@@ -28,6 +28,7 @@ const App: React.FC = () => {
           if (data.exists) {
             // User exists, update Redux store with profile info
             dispatch(setUserProfile(data.user));
+            dispatch(setUserExists(true)); // Ensure this is set
           } else {
             // User does not exist
             dispatch(setUserExists(false));
@@ -43,12 +44,17 @@ const App: React.FC = () => {
   return (
     <>
       <Routes>
-        <Route path="/" element={<Profile />} />
-        <Route path="/create-profile" element={<CreateProfile />} />
-        <Route path="/matches" element={<Matches />} />
-        <Route path="/settings" element={<Settings />} />
+        {userExists ? (
+          <>
+            <Route path="/" element={<Profile />} />
+            <Route path="/matches" element={<Matches />} />
+            <Route path="/settings" element={<Settings />} />
+          </>
+        ) : (
+          <Route path="/create-profile" element={<CreateProfile />} />
+        )}
       </Routes>
-      <BottomNav />
+      {userExists && <BottomNav />}
     </>
   );
 };
