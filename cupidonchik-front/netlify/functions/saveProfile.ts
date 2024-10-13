@@ -1,5 +1,10 @@
 import { Handler } from "@netlify/functions";
 import { MongoClient } from "mongodb";
+import * as Sentry from "@sentry/node";
+
+Sentry.init({
+  dsn: process.env.SENTRY_DSN, // Add Sentry DSN to your Netlify environment variables
+});
 
 const uri = process.env.MONGODB_URI || "";
 const client = new MongoClient(uri);
@@ -41,6 +46,7 @@ const handler: Handler = async (event) => {
     };
   } catch (error) {
     console.error("Error saving profile:", error);
+    Sentry.captureException(error); // Send error to Sentry
     return {
       statusCode: 500,
       body: JSON.stringify({ message: "Internal Server Error" }),
