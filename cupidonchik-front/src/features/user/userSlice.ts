@@ -15,7 +15,7 @@ interface UserProfile {
 const initialState: UserState = {
   userInfo: null,
   userProfile: null,
-  userExists: true,
+  userExists: false,
 };
 
 const userSlice = createSlice({

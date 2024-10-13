@@ -34,7 +34,7 @@ const CreateProfile: React.FC = () => {
       .then((response) => response.json())
       .then((data) => {
         dispatch(setUserProfile(data.profile));
-        dispatch(setUserExists(true)); // Add this line
+        dispatch(setUserExists(true));
         navigate("/");
       })
       .catch((error) => {
