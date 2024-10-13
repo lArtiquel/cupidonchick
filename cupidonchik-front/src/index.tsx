@@ -8,6 +8,9 @@ import { ThemeProvider } from "@mui/material/styles";
 import theme from "./theme";
 import { BrowserRouter } from "react-router-dom";
 import { store } from "./store";
+import eruda from "eruda";
+
+eruda.init(); // add eruda for debugging
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
