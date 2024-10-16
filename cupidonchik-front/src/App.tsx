@@ -12,6 +12,7 @@ import CreateProfile from "./features/profile/CreateProfile";
 import { useAppSelector } from "./store";
 
 const App: React.FC = () => {
+  const backendUrl = process.env.REACT_APP_BACKEND_URL || "";
   const dispatch = useDispatch();
   const { tg } = useTelegram();
   const userExists = useAppSelector((state) => state.user.userExists);
@@ -22,7 +23,9 @@ const App: React.FC = () => {
     if (user) {
       dispatch(setUserInfo(user));
       // Fetch user data from backend
-      fetch(`/.netlify/functions/checkUser?telegramUserId=${user.id}`)
+      fetch(
+        `${backendUrl}/.netlify/functions/checkUser?telegramUserId=${user.id}`
+      )
         .then((response) => response.json())
         .then((data) => {
           if (data.exists) {

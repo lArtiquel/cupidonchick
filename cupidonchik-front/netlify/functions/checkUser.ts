@@ -93,7 +93,7 @@ const handler: Handler = async (event) => {
     }
 
     await client.connect();
-    const database = client.db("Cluster");
+    const database = client.db("cupidonchik");
     const users = database.collection<User>("users");
 
     const user = await users.findOne({

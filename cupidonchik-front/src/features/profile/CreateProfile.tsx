@@ -6,6 +6,7 @@ import { TextField, Container, Typography, Box } from "@mui/material";
 import GradientButton from "../../components/GradientButton";
 
 const CreateProfile: React.FC = () => {
+  const backendUrl = process.env.REACT_APP_BACKEND_URL || "";
   const userInfo = useAppSelector((state) => state.user.userInfo);
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
@@ -26,7 +27,7 @@ const CreateProfile: React.FC = () => {
     };
 
     // Save profile to backend
-    fetch("/.netlify/functions/saveProfile", {
+    fetch(`${backendUrl}/.netlify/functions/saveProfile`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(profile),

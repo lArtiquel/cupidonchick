@@ -99,7 +99,7 @@ const handler: Handler = async (event) => {
     }
 
     await client.connect();
-    const database = client.db("your_database_name");
+    const database = client.db("cupidonchik");
     const users = database.collection<UserProfile>("users");
 
     await users.updateOne(
