@@ -4,10 +4,10 @@ const theme = createTheme({
   palette: {
     mode: "dark", // Enable dark mode
     primary: {
-      main: "#e91e63", // ruby color
+      main: "#ffffff",
     },
     secondary: {
-      main: "#ffffff",
+      main: "#e91e63", // ruby color
     },
     background: {
       default: "#121212",
@@ -15,7 +15,7 @@ const theme = createTheme({
     },
     text: {
       primary: "#ffffff",
-      secondary: "#aaaaaa",
+      secondary: "#e91e63",
     },
   },
   components: {

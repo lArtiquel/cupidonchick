@@ -18,10 +18,10 @@ const CreateProfile: React.FC = () => {
 
     const profile = {
       telegramUserId: userInfo?.id,
-      first_name: userInfo?.first_name,
-      last_name: userInfo?.last_name,
+      firstName: userInfo?.first_name,
+      lastName: userInfo?.last_name,
       username: userInfo?.username,
-      photo_url: userInfo?.photo_url,
+      photoUrl: userInfo?.photo_url,
       bio,
       // Add other fields
     };

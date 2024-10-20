@@ -11,10 +11,10 @@ const client = new MongoClient(uri);
 
 interface UserProfile {
   telegramUserId: number;
-  first_name: string;
-  last_name?: string;
+  firstName: string;
+  lastName?: string;
   username?: string;
-  photo_url?: string;
+  photoUrl?: string;
   bio?: string;
   // Add other fields as necessary
 }
@@ -66,17 +66,17 @@ interface UserProfile {
  *       type: object
  *       required:
  *         - telegramUserId
- *         - first_name
+ *         - firstName
  *       properties:
  *         telegramUserId:
  *           type: integer
  *         first_name:
  *           type: string
- *         last_name:
+ *         lastName:
  *           type: string
  *         username:
  *           type: string
- *         photo_url:
+ *         photoUrl:
  *           type: string
  *         bio:
  *           type: string

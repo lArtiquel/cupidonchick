@@ -9,6 +9,7 @@ import theme from "./theme";
 import { BrowserRouter } from "react-router-dom";
 import { store } from "./store";
 import eruda from "eruda";
+import { CssBaseline } from "@mui/material";
 
 eruda.init(); // add eruda for debugging
 
@@ -20,6 +21,7 @@ root.render(
     <Provider store={store}>
       <ThemeProvider theme={theme}>
         <BrowserRouter>
+          <CssBaseline />
           <App />
         </BrowserRouter>
       </ThemeProvider>

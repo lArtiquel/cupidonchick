@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import WebApp from "@twa-dev/sdk";
 
 const useTelegram = () => {
-  const [tg, setTg] = useState(WebApp);
+  const [tg] = useState(WebApp);
 
   useEffect(() => {
     tg.ready();

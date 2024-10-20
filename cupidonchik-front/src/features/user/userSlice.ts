@@ -9,6 +9,11 @@ interface UserState {
 
 interface UserProfile {
   telegramUserId: number;
+  firstName: string;
+  lastName?: string;
+  username?: string;
+  photoUrl?: string;
+  bio?: string;
   // Add other profile fields
 }
 
