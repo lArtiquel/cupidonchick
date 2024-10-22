@@ -1,0 +1,29 @@
+name: Backend Deployment
+
+on:
+  push:
+    branches: [master]
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - uses: actions/setup-node@v2
+        with:
+          node-version: "20"
+
+      - uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ secrets.AWS_DEFAULT_REGION }}
+
+      - run: npm ci --prefix backend
+
+      - run: |
+          cd backend
+          sam build
+          sam deploy --no-confirm-changeset --no-fail-on-empty-changeset --stack-name cupidonchik-backend --parameter-overrides MongoDBUri=${{ secrets.MONGODB_URI }} SentryDsn=${{ secrets.SENTRY_DSN }} --capabilities CAPABILITY_IAM
